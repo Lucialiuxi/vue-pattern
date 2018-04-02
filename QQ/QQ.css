@@ -1,0 +1,50 @@
+body,h3{
+	margin: 0;
+}
+/*▾*/
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+li{
+	cursor: pointer;
+}
+#wrap{
+	width: 300px;
+	height: 500px;
+	background-color: gray;
+	border: 1px solid salmon;
+	margin: 0px auto;
+	padding: 100px 0 50px;
+	border-radius: 50px;
+}
+#QQapp{
+	height: 500px;
+	overflow: auto;
+	background-color: paleturquoise;
+}
+#QQapp::-webkit-scrollbar{
+	width: 0;
+	height: 0;
+}
+#wrap .group li{
+	height: 40px;
+	border: 1px solid grey;
+	padding-left: 20px;
+	background-color: #fff;
+	line-height: 40px;
+	font-size: 16px;
+	position: relative;
+}
+#wrap .group .groupName{
+	font-size: 20px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #fff;
+	border: 1px solid grey;
+	background-color: bisque;;
+}
+#wrap .group .salmon{
+	background-color: salmon;
+}

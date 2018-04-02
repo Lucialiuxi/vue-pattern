@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="QQ.css"/>
+	</head>
+	<body>
+		<script src="./vue.js"></script>
+		<section id="wrap">
+			<ul id="QQapp">
+				<li 
+					class="group"
+					v-for="item,index in qqData"
+				>
+					<h3 
+						class="groupName" 
+						:class="{salmon: index === currentIndex}"
+						@click="index === currentIndex ? currentIndex = -1 : currentIndex = index"
+					>
+						<span class="ico">▸</span>
+						<span>{{item.title}}</span>
+					</h3>
+					<ul
+						v-for="value in item.list"
+						:style= "{display : index === currentIndex ? 'block' : 'none'}"
+					>
+						<li>
+							{{value.title}}
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+		<script>
+				let qqData = [
+					{
+						title:'我的好友',
+						list:[
+							{
+								title:'沫沫'
+							},
+							{
+								title:'菜菜'
+							},
+							{
+								title:'泰泰'
+							}
+						]
+					},
+					{
+						title:'同学',
+						list:[
+							{
+								title:'小红'
+							},
+							{
+								title:'小明'
+							},
+							{
+								title:'小美'
+							},
+							{
+								title:'娜娜'
+							}
+						]
+					},
+					{
+						title:'同乡',
+						list:[
+							{
+								title:'大名'
+							},
+							{
+								title:'大同'
+							},
+							{
+								title:'大方'
+							},
+							{
+								title:'大哈'
+							}
+						]
+					},
+				]
+
+
+				let vm = new Vue({
+					el:'#QQapp',
+					data:{
+						qqData,
+						currentIndex:-1
+					}
+				})
+			</script>
+	</body>
+</html>
