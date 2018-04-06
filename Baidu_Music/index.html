@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			/* .pink{
+				background-color: pink;
+			}
+			.plum{
+				background-color: plum;
+			} */
+		</style>
+		<link rel="stylesheet" type="text/css" href="baidu.css" />
+	</head>
+
+	<body>
+		<script src="./vue.js"></script>
+		<script>	
+			let data = [
+				{
+					id:Date.now()+Math.random(),
+					name: '邓紫棋',
+					song: '泡沫',
+					checked: false,
+					album: 10
+				},
+				{
+					id:Date.now()+Math.random(),
+					name: '蔡依林',
+					song: '说爱你',
+					checked: false,
+					album: 10
+				},
+				{
+					id:Date.now()+Math.random(),
+					name: '周杰伦',
+					song: '稻香',
+					checked: false,
+					album: 10
+				},
+				{
+					id:Date.now()+Math.random(),
+					name: '张靓颖',
+					song: '我的梦',
+					checked: false,
+					album: 10
+				},
+				{
+					id:Date.now()+Math.random(),
+					name: '萧敬腾',
+					song: '怎么说我不爱你',
+					checked: false,
+					album: 10
+				}
+			]
+		</script>
+		<div class="wrap">
+			<div class="baidu">
+				<ul id="list">
+					<li 
+						v-for="item,index in info" 
+						:style="difBg(index)"
+					>
+						<div>
+							<input type="checkbox" v-model="item.checked">
+						</div>
+						<span>{{item.song}}</span>
+						<span>{{item.name}}</span>
+					</li>
+				</ul>
+				<div class="select">
+					<span class="selectAll">
+						<input type="checkbox" v-model="isSelectAll"/>
+						<span>全选</span>
+					</span>
+					<div class="others">
+						<span>歌手有：{{info.length}}位</span>
+						<span>选中：{{checkedLength}}位歌手</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			let vm = new Vue({
+				el:document.querySelector('.wrap'),
+				data:{
+					info:data
+				},
+				methods:{
+					difBg(i){
+						return {background:i % 2 === 0 ? 'pink' : 'plum'}
+					},
+					classBg(){
+
+					}
+				},
+				computed:{
+					isSelectAll:{
+						get(){
+							console.log(this.info.every(item=>item.checked))
+							return this.info.every(item=>item.checked)
+						},
+						set(newValue){
+							this.info.forEach(item=>item.checked=newValue)
+						}
+					},
+					checkedLength(){
+						return this.info.filter(item=>item.checked).length
+					}
+
+				}
+			})
+		</script>
+	</body>
+
+</html>
