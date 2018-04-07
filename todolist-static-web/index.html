@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <script src="./vue.js"></script>
+    <script src="./js/index.js"></script>
+    <section class="todoapp">
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input 
+                    class="new-todo" 
+                    autofocus placeholder="请输入内容" 
+                    v-model.lazy.enter="addData"
+                />
+            </header>
+            <section  class="main" v-show="isShow">
+                <!-- 全选 -->
+                <input  class="toggle-all"  type="checkbox" v-model="selectAll"/>
+                <ul class="todo-list">
+                    <template 
+                        v-for="item,index in filterInfor"
+                    >
+                        <li
+                            :class="[
+                                    item.checked ? 'completed' : '',
+                                    item == editItem ? 'editing' : ''
+                                    ]" 
+                        >
+                            <div class="view">
+                                <input 
+                                    class="toggle" 
+                                    type="checkbox"  
+                                    v-model="item.checked"
+                                />
+                                <label 
+                                    @dblclick = "clickEdit(item,index)"
+                                >{{item.value}}</label>
+                                <button 
+                                    class="destroy"
+                                    @click="removeLi(item,index)"
+                                ></button>
+                            </div>
+                            <input 
+                                class="edit" 
+                                :data-id="index" 
+                                v-model="item.value"
+                                @blur = "editDone" 
+                                @keyup.enter = "editDone"
+                                @keyup.esc = "escDone(item)"
+                            />
+                        </li>
+                    </template>
+                </ul>
+            </section>
+            <footer class="footer" v-show="isShow">
+	            <span class="todo-count">
+	            	<strong>{{checkedLength}}</strong>
+	            	<span>条未选中</span>
+	            </span>
+	            <ul class="filters">
+	            	<li><a href="#/all"       >All</a></li> 
+	            	<li><a href="#/active"    >Active</a></li> 
+	            	<li><a href="#/completed" >Completed</a></li>
+	           	</ul>
+            </footer>
+        </div>
+    </section>
+</body>
+
+</html>
