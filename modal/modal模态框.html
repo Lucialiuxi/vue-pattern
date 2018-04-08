@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+		<script src="./vue.js"></script>
+	</head>
+	<script type="text/x-template" id="tip">
+		<div class="modal-example">
+			<div id="yk"></div>
+        	<div class="modal">
+				<div class="modal-header">
+					<h4>{{title}}</h4>
+				</div>
+				<div class="modal-content">
+					<div>
+						{{content}}
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input 
+						class="btn" 
+						type="button" 
+						value="确定"
+						@click = "childClickConfirmHandle"  
+					/>
+					<input 
+						class="btn" 
+						value="取消" 
+						type="button" 
+						@click = "childClickCancelHandle"  
+					/>
+				</div>
+        	</div>
+		  </div>
+	</script>
+	<body>
+		  <div id="app">
+			<tip-box
+				:title = "title1"
+				:content = "content1"
+				@click-confirm="parentConfirmHandle"
+				@click-cancel="parentCancelHandle"
+			></tip-box>
+		  </div>
+		<script>
+			Vue.component('tip-box',{
+				props:{
+					'title':{
+						type:[Array,String,Object],
+						default(){
+							return '这里是标题'
+						}
+					},
+					
+					'content':{
+						type:[Array,String,Object],
+						default(){
+							return '在这里添加内容'
+						}
+					}
+				},
+				data(){
+					return {}
+				},
+				template:'#tip',
+				methods:{
+					childClickConfirmHandle(){
+						this.$emit('click-confirm','确定')
+					},
+					childClickCancelHandle(){
+						this.$emit('click-cancel','取消')
+					}
+				}
+				
+			})
+
+			new Vue({
+				el:'#app',
+				data:{
+					title1:'父组件给的标题',
+					content1:'父组件的内容'
+				},
+				methods:{
+					parentConfirmHandle(params){
+						
+						console.log('父组件订阅确定',params)
+						yk.innerHTML = params
+					},
+					parentCancelHandle(params){
+						console.log('父组件订阅取消',params)
+						yk.innerHTML = params
+					}
+
+				},
+				computed:{
+
+				}
+			})
+		</script>
+	</body>
+</html>
