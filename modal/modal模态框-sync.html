@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+		<script src="./vue.js"></script>
+	</head>
+	<script type="text/x-template" id="tip">
+		<div class="modal-example">
+        	<div class="modal">
+				<div class="modal-header">
+					<slot name="header" :title="title">
+						<h4>{{title}}</h4>
+					</slot>
+				</div>
+				<div class="modal-content">
+					<slot>
+						{{content}}
+					</slot>
+				</div>
+				<div class="modal-footer">
+					<input 
+						class="btn" 
+						type="button" 
+						:value="okBtn"
+						@click = "childClickConfirmHandle"  
+					/>
+					<input 
+						class="btn" 
+						:value="cancelBtn" 
+						type="button" 
+						@click = "childClickCancelHandle"  
+					/>
+				</div>
+        	</div>
+		  </div>
+	</script>
+	<body>
+		  <div id="app">
+			<div id="yk" @click="tipBoxView=true">登录</div>
+			<tip-box
+				@click-confirm="parentConfirmHandle"
+				@click-cancel="parentCancelHandle"
+				ok-btn="next"
+				cancel-btn="cancel"
+				:content="content1"
+				:title="title1"
+				:tipboxshow.sync="tipBoxView"
+				v-show="tipBoxView"
+			>
+				<template>
+					<table slot-scope="obj">
+						<thead>
+							<th>{{obj.title}}</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{obj.title}}</td>
+								<td>body</td>
+							</tr>
+						</tbody>
+					</table>
+				</template>
+			</tip-box>
+		  </div>
+		<script src="./modal.js"></script>
+	</body>
+</html>
