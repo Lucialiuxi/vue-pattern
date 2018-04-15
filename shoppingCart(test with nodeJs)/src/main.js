@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App'
 Vue.config.productionTip = false
 
-import store from './store/'
+// 引入vuex的容器
+import store from './store/storeFile'
 
+// 引入axios
 import axios from './axios-plugin';
 
 Vue.use(axios)

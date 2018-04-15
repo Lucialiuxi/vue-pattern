@@ -1,15 +1,15 @@
 <template>
-  <div class="cart-bar clearfix">
+  <div class="cart-bar clearfix"  v-show="$store.getters.len">
     <div class="section-left">
         <a href="javascript:;" class="back-shopping">
           继续购物
         </a>
         <span class="cart-total">
-          共 <i>{{$store.getters.len}}</i> 件商品，已选择 <i>{{$store.getters.checkedLen}}</i> 件
+          共 <i>{{totalNum}}</i> 件商品，已选择 <i>{{$store.getters.checkedLen}}</i> 件
         </span>
     </div>
     <span class="total-price">
-        合计：<em>10636</em>元
+        合计：<em>{{totalPrice}}</em>元
     </span>
     <a href="javascript:void(0);" class="btn btn-a btn btn-primary">去结算</a>
     <div class="no-select-tip hide">
@@ -19,6 +19,41 @@
     </div>
 </div>
 </template>
+<script> 
+export default {
+    props:{
+        list:{
+            type:[Object,Array],
+            required:true,
+        } 
+        
+    },
+    computed:{
+        totalNum(){
+            let n = 0;
+            for(let i =0; i < this.list.length; i++){
+                n+=this.list[i].buyNumber;
+            }
+            console.log('n是',n)
+            return n
+        },
+        totalPrice(){
+            let priceCount=0;
+            for(let i =0; i < this.list.length; i++){
+                
+               if(this.list[i].checked){
+                    priceCount+=this.list[i].price*this.list[i].buyNumber;
+               }
+            }
+            return priceCount
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
 
 <style scoped>
   /*计算价钱的信息*/

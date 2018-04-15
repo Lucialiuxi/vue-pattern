@@ -1,13 +1,13 @@
 <template>
   <div class="item-box"> 
-    <div class="item-table" >
+    <div class="item-table ">
       <div class="item-row">
         <!--左侧单选框-->
         <div class="col col-check">  
           <i 
-            class="iconfont icon-checkbox" 
-            @click="checkedOneList"
-            :class="{'icon-checkbox-selected': option.checked}" 
+            class="iconfont icon-checkbox "
+            :class="{'icon-checkbox-selected':detail.checked}"
+            @click="clickListChecked"
           >√</i> 
         </div>
         <!--商品图片展示-->
@@ -22,29 +22,39 @@
           <div class="tags">   
           </div>
           <h3 class="name">  
-            <a href="//item.mi.com/1161800009.html" target="_blank"> {{option.title}} </a>  
+            <a href="//item.mi.com/1161800009.html" target="_blank"> {{detail.title}} </a>  
           </h3>      
         </div>
         <!--商品单价-->
-        <div class="col col-price"> {{option.price}}元 </div>
+        <div class="col col-price"> {{detail.price}} </div>
         <!--商品数量-->
         <div class="col col-num">  
           <div class="change-goods-num clearfix J_changeGoodsNum"> 
-            <a href="javascript:void(0)" class="J_minus">
+            <!-- -号 -->
+            <a href="javascript:void(0)" 
+                class="J_minus"
+                @click="decreaseHandle"
+              >
               <i class="iconfont"></i>
             </a> 
-            <input tyep="text"  :value="option.buyNumber"  autocomplete="off" class="goods-num J_goodsNum" />
-            <a href="javascript:void(0)" class="J_plus" @click="plusHandle">
+            <input tyep="text"  v-model="detail.buyNumber"  autocomplete="off" class="goods-num J_goodsNum" />
+             <!-- +号 -->
+            <a href="javascript:void(0)" 
+               class="J_plus"
+               @click="increaseHandle"
+            >
               <i class="iconfont"></i>
             </a>   
           </div>  
         </div>
         <!--小计-->
-        <div class="col col-total"> {{option.price * option.buyNumber}}元 <p class="pre-info">  </p> </div>
+        <div class="col col-total"> {{detail.buyNumber*detail.price}} <p class="pre-info">  </p> </div>
         <!--操作-->
         <div class="col col-action"> 
           <a href="javascript:void(0);" title="删除" class="del">
-            <i class="iconfont"></i>
+            <i class="iconfont" 
+              @click="deleteHandle"
+            ></i>
           </a> 
         </div>
       </div>
@@ -53,33 +63,41 @@
 </template>
 <script>
 export default {
+  name:'shopItemBox',
   props:{
-    option:{
-      type: Object,
-      default(){
-        return {}
-      }
+    detail:{
+      type: [Object,Array],
+      required:true,
     }
   },
   methods:{
-    checkedOneList(){
-      this.$store.commit('updateListChecked',{
-        shop: this.option,
-        checked: !this.option.checked
+    clickListChecked(){
+        console.log('点击了',this.detail.checked)
+        //点击切换选中，提交mutation到vuex更新选中状态
+        this.$store.commit('updateListChecked',{
+          product:this.detail,
+          checked:!this.detail.checked,
+        })
+    },
+    deleteHandle(){//点击删除，提交mutation到vuex更新选中状态
+      this.$store.commit('deleteProduct',this.detail)
+    },
+    decreaseHandle(){//点击减号，提交mutation到vuex更新选中状态
+      this.$store.commit('updateDecreaseNumber',{
+        product:this.detail,
+        buyNumber:this.detail.buyNumber,
       })
     },
-    plusHandle(){
-      let num = this.option.buyNumber;
-      num++;
-      if(num > this.option.buylimit){
-        alert('不能超过限购')
-        return;
-      }
-      this.$store.commit('updataListBuyNumber', {
-        shop: this.option,
-        num
+    increaseHandle(){
+      //点击加号，提交mutation到vuex更新选中状态
+      this.$store.commit('updateIncreaseNumber',{
+        product:this.detail,
+        buyNumber:this.detail.buyNumber,
       })
     }
+  },
+  computed:{
+    
   }
 }
 </script>

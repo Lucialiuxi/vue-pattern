@@ -1,24 +1,26 @@
 <template>
   <div class="shop-cart">
     <!--请求购物车数据时候loading展示-->
-    <div style="text-align:center;" v-show="loading">
+    <div style="text-align:center;" v-if="!isgetList">
       <img src="../assets/timg.gif" alt="">
     </div>
-    <div class="content" v-if="!loading">
-      <!--数据为空，提示购物车为空，数据是有的，不提示-->
-      <div class="cart-empty" id="J_cartEmpty" v-show="!shopList.length">
+      <!-- 请求到数据才渲染整个购物车的模块 -->
+    <div class="content" v-if="isgetList">
+      <!-- 请求到购物车商品数据后，购物车在有商品的时候没有才显示，否则隐藏 -->
+      <div class="cart-empty" id="J_cartEmpty" v-show="!$store.getters.len">
           <h2>您的购物车还是空的！</h2>
           <a href="" class="btn btn-primary btn-shoping J_goShoping">马上去购物</a>
       </div>
-
-      <div v-show="shopList.length" class="cart-goods-list">
+        <!-- 请求到购物车商品数据后，购物车在有商品的时候才显示，否则隐藏 -->
+      <div class="cart-goods-list" 
+           v-show="$store.getters.len">
         <!--购物车表头-->
         <div class="list-head clearfix">
             <div class="col col-check">
-              <i class="iconfont icon-checkbox"
-                :class="{'icon-checkbox-selected': $store.getters.isCheckedAll}"
-              >√</i>
-              全选</div>
+                <i class="iconfont icon-checkbox "
+                    :class="{'icon-checkbox-selected':$store.getters.isCheckedAll}"
+                    @click="selectAllClickHandle"
+                >√</i>全选</div>
             <div class="col col-img">&nbsp;</div>
             <div class="col col-name">商品名称</div>
             <div class="col col-price">单价</div>
@@ -28,73 +30,64 @@
         </div>
         <!--购物车展示商品信息-->
         <div class="list-body">
-          <shop-item-box
-            v-for="item in shopList" :key="item.skuId"
-            :option='item'
+          <shop-item-box 
+            v-for="item in shopList"
+            :key="item.skuId"
+            :detail="item"
           ></shop-item-box>
         </div>
       </div>
       <!--计算价钱的信息-->
-      <shop-info v-show="shopList.length"></shop-info>
+      <shop-info :list="shopList"></shop-info>
     </div>
-    <recommend></recommend>
+    <recommend :recommend="recommend"></recommend>
   </div>
 </template>
 <script>
-import ShopItemBox from './shopItemBox'
-import ShopInfo from './shopInfo'
-import recommend from './recommend'
-import { mapState } from 'vuex'
-export default {
-  components: {
-    ShopItemBox,
-    ShopInfo,
-    recommend
-  },
-  data(){
-    return {
-      //shopList: []
-      loading: true  // 没回来之前，loading显示
-    }
-  },
-  computed:{
-    /* shopList(){
-      return this.$store.state.shopList;
-    }, */
-    //...mapState(['shopList'])
-    ...mapState({
-      shopList(state){
-        return state.shopList
-      }
-    })
-   /*  isCheckedAll(){
-      return  this.shopList.every(item => item.checked)
-    } */
-  },
-  created(){
-    // 派发一个action之后，返回的是promise对象，使用then
-    /* 
-        取数据
-          规划是在vuex中取数据，一律都从vuex中取值，前期规划好了这个数据是多个组件公用的
-        局部的数据，正好请求是在action中，在action返回一个promise，在派发额组件中拿到数据，这个数据不是从vuex拿的
-  
-    */
-   /*  this.$store.dispatch('getListAction').then((data) => {
-      console.log(123,data)
-      this.shopList = data;
-    }) */
-    /* 
-        两个组件，发送的是同一个接口，派发同一个action
-        A组件中，发送请求后打印1
-        B组件中，发送请求后打印2
+  // 根模块，引入其他模块
+  import shopInfo  from './shopInfo';
+  import shopItemBox  from './shopItemBox';
+  import recommend  from './recommend';
+  import {mapState} from 'vuex'
 
-        最起码需要知道 ajax回来
-    */
-    this.$store.dispatch('getListAction').then(() =>{
-      this.loading = false;
-    })
+  export default {
+    name:'shopCar',
+    components:{//注册子组件
+      shopInfo,
+      shopItemBox,
+      recommend
+    },
+    created(){
+      // 发送数据请求给actions,通过action提交mutation,派发action之后，action给返回一个promise对象，就可以使用then
+      this.$store.dispatch('getShopListAction').then(()=>{
+          this.isgetList=true
+      })
+    },
+    computed:/*{
+      shopList(){
+        return this.$store.state.shopList
+      }, 
+      recommend(){
+        return this.$store.state.recommend
+      }
+    }*/
+    //映射this.$store.state.shopList 和this.$store.state.shopList
+    mapState(['shopList','recommend'])
+    ,
+    methods:{
+      selectAllClickHandle(){//全选
+          this.selectAll=!this.selectAll
+          this.shopList.forEach(item =>  item.checked = this.selectAll);
+      }
+    },
+    data(){
+      return{
+        selectAll:false,
+        isgetList:false,//记录是否请求到shopList的状态,数据没有回来之前，加载图标显示
+      }
+    }
   }
-}
+
 </script>
 <style>
 @import url('./css/font');

@@ -4,11 +4,12 @@
       <span>买购物车中商品的人还买了</span>
     </h2>
     <div class="xm-recommend">
-    <div v-show='loading'>
-      <img src="@/assets/timg.gif" alt="">
+    <div>
+        <!-- 推荐购买的商品的数据请求还没有回来的时候，出现加载的图片 -->
+      <img src="@/assets/timg.gif" alt="" v-if="!isGetRecommend">
     </div>
-      <ul class="row clearfix" v-if="!loading">
-          <li v-for="item in 10" class="J_xm-recommend-list span4">
+      <ul class="row clearfix">
+          <li v-for="item in recommend" :key="item.skuId" class="J_xm-recommend-list span4">
               <dl>
                   <dt> 
                     <a href="javascript:;" > 
@@ -16,11 +17,15 @@
                     </a> 
                   </dt>
                   <dd class="xm-recommend-name"> 
-                    <a href="javascript:;" > 小米蓝牙项圈耳机 </a> 
+                    <a href="javascript:;" > {{item.title}} </a> 
                   </dd>
-                  <dd class="xm-recommend-price">299元</dd>
+                  <dd class="xm-recommend-price">{{item.price}}</dd>
                   <dd class="xm-recommend-tips"> 
-                    <a href="javascript:;"  class="btn btn-small btn-line-primary J_xm-recommend-btn">加入购物车</a> 
+                    <a 
+                        href="javascript:;"  
+                        class="btn btn-small btn-line-primary J_xm-recommend-btn"
+                        @click="addToShopCart(item)"
+                    >加入购物车</a> 
                   </dd>
               </dl>
           </li>
@@ -29,25 +34,42 @@
   </div>
 </template>
 <script>
-    import {getRecommend} from '@/server/'
     export default {
-        data(){
-            return {
-                recommendList:[],
-                loading: true
+        name:'recommend',
+        props:{
+            recommend:{
+                type: [Object,Array],
+                required:true,
             }
         },
         created(){
-            getRecommend().then(({data}) => {
-                console.log(data)
-                this.recommendList = data.data.list;
-            }).then(() => {
-                this.loading = false;
+            // 发送数据请求给actions,通过action提交mutation
+            this.$store.dispatch('getRecommendAction').then(()=>{
+                console.log('推荐数据回来了')
+                this.isGetRecommend=true
             })
+
+        },
+        methods:{
+            addToShopCart(pro){
+                let index = this.recommend.findIndex(item=>item===pro)
+                console.log(this.recommend[index])
+                this.$store.commit('addProduct',{
+                    oneProduct:this.recommend[index]
+                })
+            }
+        },
+        data(){
+            return {
+                isGetRecommend:false,//记录请求的推荐数据有没有回来，默认没有回来
+            }
         }
     }
 </script>
 <style>
+ul{
+    list-style: none;
+}
 .recommend {
   margin-top: 30px;
 }
