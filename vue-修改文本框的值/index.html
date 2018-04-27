@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="./vue.js"></script>
+	<link rel="stylesheet" href="./index.css">
+	<body>
+		<div id="app">
+			<div class="text">
+				<div 
+					class="text_i"
+					v-for="(item,index) in list"
+					:key="item.id"
+				>
+					<div class="show" v-show="item.show">
+						<p class="info">{{item.title}}</p>
+						<a 
+							href="javascript:;" 
+							class="btn" 
+							@click="toEditHandle(item,index)"
+						></a>
+					</div>
+					<div 
+						class="alter"
+						:style={display:item.show?'none':'block'}
+					>
+						<input 
+							type="text" 
+							v-model="item.title"
+							ref="inp"
+						/>
+						<span class="sure" @click="okHandle(item,index)">确定</span>
+						<span class="cancel" @click="cancelHandle(item)">取消</span>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<script>
+			let list =[
+					{
+						title:'欢迎',
+						id:1,
+						show:true
+					},
+					{
+						title:'welcome~',
+						id:2,
+						show:true
+					},
+				]
+			var app = new Vue({
+				el:'#app',
+				data:{
+					list,
+					beforeTitle:''//存一下编辑之前的title，在cancel的时候用
+				},
+				methods:{
+					toEditHandle(obj,index){
+						this.beforeTitle = obj.title
+						obj.show = false;
+						this.$nextTick(function(){
+							console.log(index)
+							this.$refs.inp[index].focus()
+						})
+					},
+					okHandle(obj){
+						if(obj.title.trim()===''){
+							alert('请输入内容');
+							return;
+						}
+						obj.show = true;
+					},
+					cancelHandle(obj){
+						obj.show = true;
+						obj.title = this.beforeTitle
+						this.beforeTitle = ''
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

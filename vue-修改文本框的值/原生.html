@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./index.css">
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="text">
+				<div class="text_i">
+					<div class="show">
+						<p class="info">欢迎来到妙味课堂</p>
+						<a href="javascript:;" class="btn"></a>
+					</div>
+					<div class="alter">
+						<input type="text" />
+						<span class="sure">确定</span>
+						<span class="cancel">取消</span>
+					</div>
+				</div>
+				<div class="text_i">
+					<div class="show">
+						<p class="info">欢迎来到妙味课堂</p>
+						<a href="javascript:;" class="btn"></a>
+					</div>
+					<div class="alter">
+						<input type="text" />
+						<span class="sure">确定</span>
+						<span class="cancel">取消</span>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<script>
+			var textI = document.querySelectorAll('.text_i');
+
+			// 先做第一个
+			var btn1 = textI[0].querySelector('.btn');
+
+			var show = textI[0].querySelector('.show');
+			var alter = textI[0].querySelector('.alter');
+
+			// 标题元素
+			var info = textI[0].querySelector('.info');
+			// 编辑框
+			var input = textI[0].querySelector('input');
+
+			// 确定
+			var sure = textI[0].querySelector('.sure');
+			// 取消
+			var cancel = textI[0].querySelector('.cancel');
+
+			btn1.onclick = function (){
+				show.style.display = 'none';	
+				alter.style.display = 'block';	
+
+				input.value = info.innerHTML;
+			}
+
+			sure.onclick  = function (){
+
+				if(input.value === ''){
+					alert('请输入内容')
+					return;
+				}
+
+				show.style.display = 'block';	
+				alter.style.display = 'none';
+				info.innerHTML = input.value;	
+			}
+
+			cancel.onclick = function (){
+				show.style.display = 'block';	
+				alter.style.display = 'none';	
+			}
+
+
+
+			// 先做第一个
+			var btn2 = textI[1].querySelector('.btn');
+
+			var show2 = textI[1].querySelector('.show');
+			var alter2 = textI[1].querySelector('.alter');
+
+			// 标题元素
+			var info2 = textI[1].querySelector('.info');
+			// 编辑框
+			var input2 = textI[1].querySelector('input');
+
+			// 确定
+			var sure2 = textI[1].querySelector('.sure');
+			// 取消
+			var cancel2 = textI[1].querySelector('.cancel');
+
+			btn2.onclick = function (){
+				show2.style.display = 'none';	
+				alter2.style.display = 'block';	
+
+				input2.value = info2.innerHTML;
+			}
+
+			sure2.onclick  = function (){
+
+				if(input2.value === ''){
+					alert('请输入内容')
+					return;
+				}
+
+				show2.style.display = 'block';	
+				alter2.style.display = 'none';
+				info2.innerHTML = input2.value;	
+			}
+
+			cancel2.onclick = function (){
+				show2.style.display = 'block';	
+				alter2.style.display = 'none';	
+			}
+
+		</script>
+	</body>
+
+</html>
