@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <div v-if="false">
+          <img alt="Vue logo" src="./assets/logo.png">
+          <HelloWorld msg="Welcome to Your Vue.js App"/>
+          <AboutEventEntry/>
+      </div>
+    <AboutSlot/>
   </div>
 </template>
 
 <script>
+
 import HelloWorld from './components/HelloWorld.vue'
+import AboutEventEntry from "./components/AboutEvent/index"
+import AboutSlot from "./components/AboutSlot"
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    AboutEventEntry,
+    AboutSlot
   }
 }
 </script>
