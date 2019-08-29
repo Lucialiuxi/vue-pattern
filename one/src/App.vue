@@ -5,29 +5,32 @@
           <HelloWorld msg="Welcome to Your Vue.js App"/>
           <AboutEventEntry/>
           <AboutSlot/>
+          <AboutProps/>
       </div>
-      <AboutProps/>
+
+      <AboutSpecialComponent/>
   </div>
 </template>
 
 <script>
 
-import HelloWorld from './components/HelloWorld.vue'
-import AboutEventEntry from "./components/AboutEvent/index"
-import AboutSlot from "./components/AboutSlot"
-import AboutProps from "./components/AboutProps"
+    import HelloWorld from './components/HelloWorld.vue';
+    import AboutEventEntry from "./components/AboutEvent/index";
+    import AboutSlot from "./components/AboutSlot";
+    import AboutProps from "./components/AboutProps";
+    import AboutSpecialComponent from "./components/AboutSpecilComponent"
 
 
-
-export default {
-  name: 'app',
-  components: {
-      HelloWorld,
-      AboutEventEntry,
-      AboutSlot,
-      AboutProps
-  }
-}
+    export default {
+      name: 'app',
+      components: {
+          HelloWorld,
+          AboutEventEntry,
+          AboutSlot,
+          AboutProps,
+          AboutSpecialComponent
+      }
+    }
 </script>
 
 <style>
