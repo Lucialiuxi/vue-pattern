@@ -1,7 +1,7 @@
 <template>
     <div class="hahahahah">
-        <slot v-bind:lucia="lucia">
-            {{lucia.color}}
+        <slot >
+            {{lucia.weight}}
         </slot>
     </div>
 </template>

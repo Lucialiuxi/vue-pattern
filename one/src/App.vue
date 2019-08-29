@@ -4,8 +4,9 @@
           <img alt="Vue logo" src="./assets/logo.png">
           <HelloWorld msg="Welcome to Your Vue.js App"/>
           <AboutEventEntry/>
+          <AboutSlot/>
       </div>
-    <AboutSlot/>
+      <AboutProps/>
   </div>
 </template>
 
@@ -14,13 +15,17 @@
 import HelloWorld from './components/HelloWorld.vue'
 import AboutEventEntry from "./components/AboutEvent/index"
 import AboutSlot from "./components/AboutSlot"
+import AboutProps from "./components/AboutProps"
+
+
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    AboutEventEntry,
-    AboutSlot
+      HelloWorld,
+      AboutEventEntry,
+      AboutSlot,
+      AboutProps
   }
 }
 </script>

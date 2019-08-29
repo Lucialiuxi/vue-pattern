@@ -43,16 +43,33 @@
         <br/>
         <!--   动态插槽     -->
         <slot-five>
-            <template v-slot:[dynamicSlotName]>
+            <template >
                 <p>
                     <span>document of vue is too long to complete</span>>
                     <span>it is good for small project</span>
-                    <span>{{lucia.color}}</span>
-                    <span>{{lucia.height}}</span>
-                    <span>{{lucia.weight}}</span>
                 </p>
             </template>
         </slot-five>
+        <br/>
+        <!--        具名插槽-->
+        <slot-six>
+            <template #sun>
+                <h1>today is sunshine day</h1>
+            </template>
+            <template #run>
+                <h1>today is running day</h1>
+            </template>
+        </slot-six>
+
+        <br/>
+        <slot-seven >
+            <template v-slot:todo="{id,title}" >
+                <div>
+                    <em>{{id}}</em>
+                    <span>{{title}}</span>
+                </div>
+            </template>
+        </slot-seven>
     </div>
 </template>
 
@@ -62,6 +79,9 @@
     import SlotThree from "./three"
     import SlotFour from "./four"
     import SlotFive from "./five"
+    import SlotSix from "./six"
+    import SlotSeven from "./seven"
+
 
     export default {
         name:"AboutSlot",
@@ -70,7 +90,17 @@
             "slot-Two": SlotTwo,
             "slot-three": SlotThree,
             "slot-four": SlotFour,
-            "slot-five": SlotFive
+            "slot-five": SlotFive,
+            "slot-six": SlotSix,
+            "slot-seven":SlotSeven
+        },
+        data:function () {
+            return {
+                data: {
+                    dynamicSlotName:'lucia',
+
+                }
+            }
         }
     }
 </script>
