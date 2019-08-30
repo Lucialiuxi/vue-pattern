@@ -7,10 +7,12 @@
                 @click="currentTab = tab"
         >{{tab}}</button>
 
-        <component
-                :is="currentTabComponent"
-                class="tab"
-        ></component>
+        <keep-alive>
+            <component
+                    :is="currentTabComponent"
+                    class="tab"
+            ></component>
+        </keep-alive>
     </div>
 </template>
 
