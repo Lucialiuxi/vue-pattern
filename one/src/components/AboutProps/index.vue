@@ -34,6 +34,7 @@
                 v-on:input="onChange"
         ></props-no-attributes>
         <div class="date-picker-theme-dark">{{inputvalue}}</div>
+        <All :message="message" class="all"/>
     </div>
 </template>
 
@@ -43,9 +44,7 @@
     import PropsValidate from "./PropsValidate";
     import PropsTypeCustom from "./PropsTypeCustom";
     import PropsNoAttributes from "./PropsNoAttributes";
-
-
-
+    import All from "./all"
 
     export default {
         name:"AboutProps",
@@ -64,7 +63,8 @@
                     firstName: "Shakespeare",
                     lastName: "William"
                 },
-                inputvalue:""
+                inputvalue:"",
+                message:"i am lucia"
             }
         },
         components:{
@@ -72,7 +72,8 @@
             "props-one-way-flow": PropsOneWayFlow,
             'props-validate': PropsValidate,
             'props-type-custom': PropsTypeCustom,
-            'props-no-attributes': PropsNoAttributes
+            'props-no-attributes': PropsNoAttributes,
+            All
         },
         methods: {
             Person:function (firstName, lastName) {

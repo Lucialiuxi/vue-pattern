@@ -3,12 +3,12 @@
       <div v-if="false">
           <img alt="Vue logo" src="./assets/logo.png">
           <HelloWorld msg="Welcome to Your Vue.js App"/>
-          <AboutEventEntry/>
           <AboutSlot/>
-          <AboutProps/>
+          <AboutSpecialComponent/>
+          <AboutEventEntry/>
       </div>
-
-      <AboutSpecialComponent/>
+      <AboutProps/>
+      <AboutApi/>
   </div>
 </template>
 
@@ -19,6 +19,7 @@
     import AboutSlot from "./components/AboutSlot";
     import AboutProps from "./components/AboutProps";
     import AboutSpecialComponent from "./components/AboutSpecilComponent"
+    import AboutApi from "./components/AboutApi"
 
 
     export default {
@@ -28,7 +29,8 @@
           AboutEventEntry,
           AboutSlot,
           AboutProps,
-          AboutSpecialComponent
+          AboutSpecialComponent,
+          AboutApi
       }
     }
 </script>
