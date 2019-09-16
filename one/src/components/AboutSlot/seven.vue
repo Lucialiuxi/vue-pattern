@@ -1,8 +1,8 @@
 <template>
     <ul class="todo-list" >
         <li
-                v-for="todo in todos"
-                :key="todo.id"
+            v-for="todo in todos"
+            :key="todo.id"
         >
             <slot name="todo" v-bind:todo="todo">
                 {{todo.title}}

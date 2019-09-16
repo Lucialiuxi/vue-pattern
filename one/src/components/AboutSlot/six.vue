@@ -1,7 +1,7 @@
 <template>
     <div class="wether">
         <slot name="sun"></slot>
-        <slot name="run"></slot>
+        <slot name="rain"></slot>
     </div>
 </template>
 

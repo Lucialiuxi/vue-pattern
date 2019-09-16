@@ -5,13 +5,15 @@
 </template>
 
 <script>
+//作用域插槽
     export default {
         name:"SlotThree" ,
         data:function () {
             return {
                 user:{
                     lastName: 'Mu',
-                    firstName: 'xin'
+                    firstName: 'xin',
+                    nikename: 'xixi'
                 }
             }
         },

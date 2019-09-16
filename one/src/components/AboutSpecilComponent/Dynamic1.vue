@@ -9,8 +9,8 @@
 
         <keep-alive>
             <component
-                    :is="currentTabComponent"
-                    class="tab"
+                :is="currentTabComponent"
+                class="tab"
             ></component>
         </keep-alive>
     </div>

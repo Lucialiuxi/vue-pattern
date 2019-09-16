@@ -4,6 +4,7 @@
         <br/>
         <Dynamic1></Dynamic1>
         <br/>
+        <!-- 异步组件 -->
         <Dynamic3></Dynamic3>
     </div>
 </template>

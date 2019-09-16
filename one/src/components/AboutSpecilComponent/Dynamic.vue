@@ -1,7 +1,11 @@
 <template>
     <div class="Dynamic">
         <span>
-            <button v-for="item in buttonTitle" :key="item.id" @click="onSwitch(item.id)">{{item.title}}</button>
+            <button 
+                v-for="item in buttonTitle" 
+                :key="item.id" 
+                @click="onSwitch(item.id)"
+            >{{item.title}}</button>
         </span>
         <div v-if="id" class="myDiv">
             {{currentItem.id}}:{{currentItem.title}}

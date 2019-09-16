@@ -28,10 +28,10 @@
             </template>
         </slot-three>
         <slot-three v-slot:default="slotProps">
-            {{slotProps.user.firstName}}
+            {{slotProps.user.lastName}}
         </slot-three>
         <slot-three v-slot="slotProps">
-            {{slotProps.user.firstName}}
+            {{slotProps.user.nikename}}
         </slot-three>
         <br/>
 
@@ -56,20 +56,38 @@
             <template #sun>
                 <h1>today is sunshine day</h1>
             </template>
-            <template #run>
-                <h1>today is running day</h1>
+            <template #rain>
+                <h1>today is rainning day</h1>
             </template>
         </slot-six>
 
         <br/>
         <slot-seven >
-            <template v-slot:todo="{id,title}" >
+            <template v-slot:todo="{todo:{id,title}}" >
                 <div>
                     <em>{{id}}</em>
                     <span>{{title}}</span>
                 </div>
             </template>
         </slot-seven>
+
+        <br/>
+        <!-- 作用域插槽 -->
+        <slot-eight>
+           <template v-slot="slotProps">
+                {{ slotProps.name1.lastname }}
+            </template>
+        </slot-eight>
+
+        <br/>
+        <!-- 动态插槽名 -->
+        <slot-dynamic>
+            <template v-slot:[dynamicSlotName]>
+                <h2>
+                    动态插槽名{{dynamicSlotName.today}}
+                </h2>
+            </template>
+        </slot-dynamic>
     </div>
 </template>
 
@@ -81,7 +99,8 @@
     import SlotFive from "./five"
     import SlotSix from "./six"
     import SlotSeven from "./seven"
-
+    import SlotEight from "./eight"
+    import SlotDynamic from "./dynamicSlot"
 
     export default {
         name:"AboutSlot",
@@ -92,12 +111,14 @@
             "slot-four": SlotFour,
             "slot-five": SlotFive,
             "slot-six": SlotSix,
-            "slot-seven":SlotSeven
+            "slot-seven":SlotSeven,
+            "slot-eight":SlotEight,
+            "slot-dynamic":SlotDynamic
         },
         data:function () {
             return {
                 data: {
-                    dynamicSlotName:'lucia',
+                    dynamicSlotName:'wether',
 
                 }
             }
