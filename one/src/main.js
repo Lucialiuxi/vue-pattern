@@ -9,5 +9,18 @@ Vue.config.productionTip = false
 Vue.use(Antd)
 
 new Vue({
+  data:{
+    foo: 1
+  },
+  computed:{
+    bar(){
+      this.foo = 10;
+    }
+  },
+  methods: {
+    baz(){
+      alert(this.foo)
+    }
+  },
   render: h => h(App),
 }).$mount('#app')

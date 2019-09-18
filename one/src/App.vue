@@ -7,8 +7,10 @@
           <AboutEventEntry/>
           <AboutProps/>
           <AboutApi/>
+          <AboutSpecialComponent/>
+          <AboutEdgeCases/>
       </div>
-      <AboutSpecialComponent/>
+      <AboutTransitionAndAnimation/>
   </div>
 </template>
 
@@ -18,8 +20,11 @@
     import AboutEventEntry from "./components/AboutEvent/index";
     import AboutSlot from "./components/AboutSlot";
     import AboutProps from "./components/AboutProps";
-    import AboutSpecialComponent from "./components/AboutSpecilComponent"
-    import AboutApi from "./components/AboutApi"
+    import AboutSpecialComponent from "./components/AboutSpecilComponent";
+    import AboutApi from "./components/AboutApi";
+    import AboutEdgeCases from "./components/AboutEdgeCases";
+    // 过渡 & 动画
+    import AboutTransitionAndAnimation from './components/AboutTransitionAndAnimation'
 
 
     export default {
@@ -30,7 +35,9 @@
           AboutSlot,
           AboutProps,
           AboutSpecialComponent,
-          AboutApi
+          AboutApi,
+          AboutEdgeCases,
+          AboutTransitionAndAnimation
       }
     }
 </script>
