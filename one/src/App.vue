@@ -9,8 +9,9 @@
           <AboutApi/>
           <AboutSpecialComponent/>
           <AboutEdgeCases/>
+          <AboutTransitionAndAnimation/>
       </div>
-      <AboutTransitionAndAnimation/>
+      <AboutCustomDirective/>
   </div>
 </template>
 
@@ -25,6 +26,8 @@
     import AboutEdgeCases from "./components/AboutEdgeCases";
     // 过渡 & 动画
     import AboutTransitionAndAnimation from './components/AboutTransitionAndAnimation'
+    //自定义指令
+    import AboutCustomDirective from './components/AboutCustomDirective'
 
 
     export default {
@@ -37,7 +40,8 @@
           AboutSpecialComponent,
           AboutApi,
           AboutEdgeCases,
-          AboutTransitionAndAnimation
+          AboutTransitionAndAnimation,
+          AboutCustomDirective
       }
     }
 </script>

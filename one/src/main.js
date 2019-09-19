@@ -3,14 +3,23 @@ import Antd from 'ant-design-vue'
 import App from './App.vue'
 import "./baseComponentRegister"
 import 'ant-design-vue/dist/antd.css'
+import mixins from "./mixins"
 
 Vue.config.productionTip = false
+//自定义选项合并策略
+Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
+  console.log(toVal, fromVal)
+  // 返回合并后的值
+}
+let strategies = Vue.config.optionMergeStrategies
+strategies.myTest = strategies.methods
 
-Vue.use(Antd)
-
+Vue.use(Antd);
+Vue.mixin(mixins);
 new Vue({
+  myOption: '全局混入测试',
   data:{
-    foo: 1
+    foo: 1,
   },
   computed:{
     bar(){
