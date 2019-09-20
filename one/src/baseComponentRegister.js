@@ -2,6 +2,11 @@ import Vue from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 
+Vue.config.ignoredElements = [
+  // 用正则忽略所有'icon-'开头的元素
+  //仅在2.5+支持
+  /^ion/
+]
 const requireComponent = require.context(
   // 其组件目录的相对路径
   './base',

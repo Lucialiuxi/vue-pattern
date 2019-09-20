@@ -5,7 +5,9 @@ import "./baseComponentRegister"
 import 'ant-design-vue/dist/antd.css'
 import mixins from "./mixins"
 
-Vue.config.productionTip = false
+//阻止 vue 在启动时生成生产提示
+Vue.config.productionTip = false;
+
 //自定义选项合并策略
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
   console.log(toVal, fromVal)

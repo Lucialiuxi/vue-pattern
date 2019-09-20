@@ -1,5 +1,7 @@
 <template>
     <div>
+        简单指令：
+        <br/>
         <input placeholder="存在只是为了测试下一个输入框的聚焦"/>
         <br/>
         <input v-focus :placeholder="p"/>

@@ -2,11 +2,13 @@
     <div class="about-api">
         关于attrs
         <about-attrs></about-attrs>
+        <about-glob-config></about-glob-config>
     </div>
 </template>
 
 <script>
 import AboutAttrs from "./attr"
+import AboutGlobConfig from './globConfig'
 
 export default {
     data(){
@@ -16,6 +18,7 @@ export default {
     },
     components:{
         "about-attrs": AboutAttrs,
+        "about-glob-config":AboutGlobConfig
     }
 }
 </script>
