@@ -10,8 +10,10 @@
           <AboutEdgeCases/>
           <AboutTransitionAndAnimation/>
           <AboutCustomDirective/>
-      </div>
           <AboutApi/>
+          <AboutFilters/>
+      </div>
+      <AboutRenderFunctionsJSX/>
   </div>
 </template>
 
@@ -29,6 +31,11 @@
     //自定义指令
     import AboutCustomDirective from './components/AboutCustomDirective'
 
+    //渲染函数
+    import AboutRenderFunctionsJSX from "./components/AboutRenderFunctionsJSX"
+    //过滤器
+    import AboutFilters from "./components/AboutFilters"
+
 
     export default {
       name: 'app',
@@ -41,7 +48,9 @@
           AboutApi,
           AboutEdgeCases,
           AboutTransitionAndAnimation,
-          AboutCustomDirective
+          AboutCustomDirective,
+          AboutFilters,
+          AboutRenderFunctionsJSX
       }
     }
 </script>

@@ -16,8 +16,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 let strategies = Vue.config.optionMergeStrategies
 strategies.myTest = strategies.methods
 
+//全局过滤器
+Vue.filter('transferToUpperCase',function(value){
+    if(!value) return;
+    return value.toUpperCase();
+})
 Vue.use(Antd);
 Vue.mixin(mixins);
+
 new Vue({
   myOption: '全局混入测试',
   data:{

@@ -3,10 +3,12 @@
         自定义合并策略
         <!-- {{aaa}} -->
         <button @keyup.space="close">测试keycode</button>
-        <ul>
-           <li><a href="#miao">去找喵星人</a></li> 
-           <li><a href="#wang">去找汪星人</a></li> 
-           <li><a href="#meng">去找萌萌哒</a></li> 
+        <ul v-if="showAnchor">
+            <li 
+                v-for="item in anchorList"
+                :key="item.id"
+                :href="item.id"
+            >{{item.title}}</li>
         </ul>
     </div>
 </template>
@@ -54,10 +56,12 @@ const Profile = Vue.extend({
     _my_option: 1
 });
 
-export default {
+ const vvmm = {
+    props:["showAnchor","anchorList"],
     data(){
         return {
-           
+        //    showAnchor: true,
+           mes: "测试nextTick生效了吗"
         }
     },
     created(){
@@ -66,9 +70,22 @@ export default {
     methods:{
         close(){
             alert('播放音乐');
-        }
+        },
+        // showAnchorHandle(){
+        //     let isShow = this.showAnchor;
+        //     this.showAnchor = !isShow;
+        //     this.$forceUpdate();
+        // }
+    },
+    components:{
+        // AnchorTest
     }
 }
+Vue.nextTick(function () {
+  // DOM 更新了
+  console.log("DOM 更新了")
+})
+export default vvmm;
 </script>
 
 <style scoped>
