@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Antd from 'ant-design-vue'
+import VueRouter from "vue-router"
 import App from './App.vue'
 import "./baseComponentRegister"
 import 'ant-design-vue/dist/antd.css'
 import mixins from "./mixins"
+import Routes from "./routes"
 
 //阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false;
@@ -23,15 +25,20 @@ Vue.filter('transferToUpperCase',function(value){
 })
 Vue.use(Antd);
 Vue.mixin(mixins);
+Vue.use(VueRouter);
 
+const router = new VueRouter({
+  routes:Routes
+})
 new Vue({
+  router,
   myOption: '全局混入测试',
   data:{
     foo: 1,
   },
   computed:{
     bar(){
-      this.foo = 10;
+      return this.foo +18;
     }
   },
   methods: {

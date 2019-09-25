@@ -46,7 +46,7 @@ import DependencyInjectionOne from "./dependency-injection-one"
 import InlineTemplateExample from "./inline-template"
 // import XTemplate from './x-template'
 
-let s = Symbol();
+// let s = Symbol();
 export default {
     data:function(){
         return {

@@ -33,7 +33,7 @@ Vue.component("anchored-heading",{
          }
      },
      created(){
-         console.log("$data",this.$data.levelList)
+        //  console.log("$data",this.$data.levelList)
      }
  }
 </script>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
 //全局注册
 // Vue.directive('focus',{
 //     //当绑定的元素插入到dom中时
