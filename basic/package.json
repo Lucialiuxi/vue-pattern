@@ -11,7 +11,8 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
-    "vue": "3.2.21"
+    "vue": "3.2.21",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

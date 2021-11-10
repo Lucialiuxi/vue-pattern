@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import _ from 'lodash';
+import { simpleStore } from './store/simple';
 
 import App from './App.vue';
 import HelloWorld from './components/HelloWorld.vue';
@@ -9,6 +10,10 @@ import ComputedProperty from './components/ComputedProperty.vue';
 import WatchExample from './components/WatchExample.vue';
 import ClassAndStyle from './components/ClassAndStyle.vue';
 import ListRender from './components/ListRender.vue';
+import EventExample from './components/EventExample.vue';
+import EventDefault from './components/events/EventDefault';
+import EventOne from './components/events/EventOne';
+import EventTwo from './components/events/EventTwo';
 
 const routes = [
   { path: '/', component: {
@@ -20,6 +25,24 @@ const routes = [
   { path: '/watch', component: WatchExample },
   { path: '/classAndStyle', component: ClassAndStyle },
   { path: '/v-for', component: ListRender },
+  {
+      path: '/basic-event',
+      component: EventExample,
+      children: [
+        {
+          path: '',
+          component: EventDefault,
+        },
+        {
+        path: 'one',
+        component: EventOne,
+        },
+        {
+        path: 'two',
+        component: EventTwo,
+        }
+      ]
+  },
 ];
 
 // 创建路由示例并传递 routes 配置
@@ -58,5 +81,6 @@ app.component('todo-item', {
 
 
 app.use(router);
+app.use(simpleStore);
 
 app.mount('#app');

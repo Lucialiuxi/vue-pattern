@@ -22,6 +22,9 @@
       <p>
         <router-link to="/v-for">列表渲染</router-link>
       </p>
+      <p>
+        <router-link to="/basic-event">事件处理和vuex</router-link>
+      </p>
     </nav>
 
     <!-- 路由出口 -->
