@@ -7,12 +7,19 @@ import HelloWorld from './components/HelloWorld.vue';
 import Basic from './components/Basic.vue';
 import ComputedProperty from './components/ComputedProperty.vue';
 import WatchExample from './components/WatchExample.vue';
+import ClassAndStyle from './components/ClassAndStyle.vue';
+import ListRender from './components/ListRender.vue';
 
 const routes = [
+  { path: '/', component: {
+      template: `<div>首页</div>`
+  } },
   { path: '/hello', component: HelloWorld },
   { path: '/basic', component: Basic },
   { path: '/computed', component: ComputedProperty },
   { path: '/watch', component: WatchExample },
+  { path: '/classAndStyle', component: ClassAndStyle },
+  { path: '/v-for', component: ListRender },
 ];
 
 // 创建路由示例并传递 routes 配置

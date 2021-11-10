@@ -16,6 +16,12 @@
       <p>
         <router-link to="/watch">侦听器</router-link>
       </p>
+      <p>
+        <router-link to="/classAndStyle">class和Style绑定</router-link>
+      </p>
+      <p>
+        <router-link to="/v-for">列表渲染</router-link>
+      </p>
     </nav>
 
     <!-- 路由出口 -->
@@ -51,7 +57,7 @@ export default {
 }
 nav p {
   display: inline-block;
-  width: 100px;
+  min-width: 100px;
   line-height: 20px;
   color: blue;
   font-weight: bold;
