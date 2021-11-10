@@ -10,6 +10,12 @@
       <p>
         <router-link to="/basic">基础</router-link>
       </p>
+      <p>
+        <router-link to="/computed">计算属性</router-link>
+      </p>
+      <p>
+        <router-link to="/watch">侦听器</router-link>
+      </p>
     </nav>
 
     <!-- 路由出口 -->

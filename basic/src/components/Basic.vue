@@ -2,7 +2,7 @@
   <div>
     <ol>
       <!-- 创建一个 todo-item 组件实例 -->
-      <todo-item></todo-item>
+      <todo-item-a></todo-item-a>
     </ol>
 
     <ol>
@@ -12,11 +12,11 @@
         我们也需要为每个组件提供一个“key”，稍后再
         作详细解释。
       -->
-      <todo-grocery-item
+      <todo-item
         v-for="item in groceryList"
         v-bind:todo="item"
         v-bind:key="item.id"
-      ></todo-grocery-item>
+      ></todo-item>
     </ol>
 
 
@@ -25,6 +25,9 @@
 </template>
 
 <script>
+const TodoItemA = {
+  template: `随意创建的`
+}
 
 export default {
   name: 'Entry',
@@ -36,6 +39,9 @@ export default {
         { id: 2, text: 'Whatever else humans are supposed to eat' }
       ]
     }
+  },
+  components: {
+    TodoItemA,
   }
 }
 </script>

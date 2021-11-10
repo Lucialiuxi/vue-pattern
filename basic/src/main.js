@@ -5,10 +5,14 @@ import _ from 'lodash';
 import App from './App.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import Basic from './components/Basic.vue';
+import ComputedProperty from './components/ComputedProperty.vue';
+import WatchExample from './components/WatchExample.vue';
 
 const routes = [
   { path: '/hello', component: HelloWorld },
-  { path: '/basic', component: Basic }
+  { path: '/basic', component: Basic },
+  { path: '/computed', component: ComputedProperty },
+  { path: '/watch', component: WatchExample },
 ];
 
 // 创建路由示例并传递 routes 配置
@@ -40,9 +44,9 @@ app.component('save-button', {
   `
 });
 
-app.component('todo-grocery-item', {
+app.component('todo-item', {
     props: ['todo'],
-    template: `<li>{{ todo.text }}</li>`
+    template: `<li>{{ todo.text || todo }}</li>`
 });
 
 
