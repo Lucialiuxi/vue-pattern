@@ -14,6 +14,7 @@ import EventExample from './components/EventExample.vue';
 import EventDefault from './components/events/EventDefault';
 import EventOne from './components/events/EventOne';
 import EventTwo from './components/events/EventTwo';
+import EventKey from './components/events/EventKey';
 
 const routes = [
   { path: '/', component: {
@@ -40,6 +41,10 @@ const routes = [
         {
         path: 'two',
         component: EventTwo,
+        },
+        {
+        path: 'key',
+        component: EventKey,
         }
       ]
   },
