@@ -16,6 +16,10 @@ import EventOne from './components/events/EventOne';
 import EventTwo from './components/events/EventTwo';
 import EventKey from './components/events/EventKey';
 
+import FormInsert from './components//FormInsert.vue';
+import BasicUse from './components/formInsert/BasicUse';
+import ValueBind from './components/formInsert/ValueBind';
+
 const routes = [
   { path: '/', component: {
       template: `<div>首页</div>`
@@ -47,6 +51,20 @@ const routes = [
         component: EventKey,
         }
       ]
+  },
+  {
+    path: '/form-insert',
+    component: FormInsert,
+    children: [
+      {
+        path: 'basic',
+        component: BasicUse,
+      },
+      {
+        path: 'bind-value',
+        component: ValueBind,
+      },
+    ],
   },
 ];
 

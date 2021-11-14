@@ -25,6 +25,9 @@
       <p>
         <router-link to="/basic-event">事件处理和vuex</router-link>
       </p>
+      <p>
+        <router-link to="/form-insert">表单输入绑定</router-link>
+      </p>
     </nav>
 
     <!-- 路由出口 -->
@@ -49,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -58,11 +61,20 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+nav {
+  max-height: 130px;
+}
 nav p {
   display: inline-block;
   min-width: 100px;
   line-height: 20px;
-  color: blue;
+  color: rgb(62, 211, 75);
   font-weight: bold;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
+nav p a {
+    color: green;
+}
+
 </style>

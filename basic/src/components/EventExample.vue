@@ -21,3 +21,10 @@ export default {
     
 }
 </script>
+
+<style scoped>
+nav p a {
+    color: saddlebrown;
+    font-weight: bold;
+}
+</style>
